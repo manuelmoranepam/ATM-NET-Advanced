@@ -2,18 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>disable</ImplicitUsings>
+    <ImplicitUsings>disabel</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.24.0" />
+    <PackageReference Include="WebDriverManager" Version="2.17.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ConfigurationLibrary\ConfigurationLibrary.csproj" />
-    <ProjectReference Include="..\LoggerLibrary\LoggerLibrary.csproj" />
-    <ProjectReference Include="..\WebDriverLibrary\WebDriverLibrary.csproj" />
   </ItemGroup>
 
 </Project>
