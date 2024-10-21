@@ -10,12 +10,14 @@ public class SerilogLoggerService : ILoggerService
 {
 	private readonly Logger _logger;
 
-	public SerilogLoggerService(IConfigurationService configurationService)
+	public SerilogLoggerService(IConfigurationService configurationService, string filePath)
 	{
 		ArgumentNullException.ThrowIfNull(configurationService);
+		ArgumentException.ThrowIfNullOrWhiteSpace(filePath);
 
 		var loggerConfiguration = new LoggerConfiguration()
 			.ReadFrom.Configuration(configurationService.GetConfiguration())
+			.WriteTo.File(filePath)
 			.Enrich.FromLogContext();
 
 		_logger = loggerConfiguration.CreateLogger();
