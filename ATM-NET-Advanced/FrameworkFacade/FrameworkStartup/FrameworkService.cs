@@ -1,7 +1,7 @@
 ﻿using ConfigurationLibrary.Configurations;
 using ConfigurationLibrary.Interfaces.Configurations;
-using LoggerLibrary.Interfaces.Loggers;
-using LoggerLibrary.Loggers;
+using LoggerLibrary.Factories;
+using LoggerLibrary.Interfaces.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using WebDriverLibrary.Configurations;
@@ -17,12 +17,9 @@ public class FrameworkService
 
 	public FrameworkService(string filePath, string fileName)
 	{
-		ArgumentException.ThrowIfNullOrWhiteSpace(filePath);
-		ArgumentException.ThrowIfNullOrWhiteSpace(fileName);
-
 		_serviceProvider = new ServiceCollection()
 			.AddSingleton<IConfigurationService>(new ConfigurationService(filePath, fileName))
-			.AddScoped<ILoggerService, SerilogLoggerService>()
+			.AddScoped<ILoggerServiceFactory, LoggerServiceFactory>()
 			.AddSingleton<IWebDriverConfiguration, WebDriverConfiguration>()
 			.AddScoped<IWebDriverService, SeleniumWebDriverService>()
 			.BuildServiceProvider();
